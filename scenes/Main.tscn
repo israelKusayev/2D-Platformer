@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/player/character_0000.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Player.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 8 )
+
+[node name="Node" type="Node"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 18, 18 )
+format = 1
+tile_data = PoolIntArray( 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 77, 14 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
