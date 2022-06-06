@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Coin
+
 func _ready() -> void:
 	$Area2D.connect("area_entered", self, "on_area_entered")
 	
