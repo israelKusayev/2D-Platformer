@@ -4,21 +4,40 @@ class_name Player
 
 signal died
 
+enum State { NORMAL, DASHING }
+
 var gravity := 1000
 var velocity := Vector2.ZERO
 var maxHorizontalSpeed := 140
+var maxDashSpeed := 500
+var minDashSpeed := 200
 var horizontalAcceleration := 2000
 var jumpSpeed := 360
 var jumpTerminationMultiplier := 4
 var hasDoubleJump := false
-
+var currentState = State.NORMAL
+var isStateNew = true
 
 func _ready() -> void:
 	$HazardArea.connect("area_entered", self, "on_hazard_area_entered")
 
 
 func _process(delta: float) -> void:
-	var moveVector := get_movment_vector()
+	match currentState:
+		State.NORMAL:
+			process_normal(delta)
+		State.DASHING:
+			process_dash(delta)
+	isStateNew = false
+
+	
+func change_state(new_state):
+	currentState = new_state
+	isStateNew = true
+
+
+func process_normal(delta: float):
+	var moveVector := get_movement_vector()
 
 	velocity.x += moveVector.x * horizontalAcceleration * delta
 	if moveVector.x == 0:
@@ -47,11 +66,30 @@ func _process(delta: float) -> void:
 
 	if is_on_floor():
 		hasDoubleJump = true
+		
+	if Input.is_action_just_pressed("dash"):
+		call_deferred("change_state", State.DASHING)
 
 	update_animation()
 
+func process_dash(delta: float):
+	if isStateNew:
+		$AnimatedSprite.play("jump")
+		var moveVector := get_movement_vector()
+		var velocityMod := 1
+		if moveVector.x != 0:
+			velocityMod = sign(moveVector.x)
+		else:
+			velocityMod = 1 if $AnimatedSprite.flip_h else -1
+		
+		velocity = Vector2(maxDashSpeed * velocityMod, 0)
+	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity.x = lerp(0, velocity.x, pow(2, -8 * delta))
+	
+	if abs(velocity.x) < minDashSpeed:
+		call_deferred("change_state", State.NORMAL)
 
-func get_movment_vector() -> Vector2:
+func get_movement_vector() -> Vector2:
 	var moveVector = Vector2.ZERO
 	moveVector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	moveVector.y = -1 if Input.is_action_just_pressed("jump") else 0
@@ -59,7 +97,7 @@ func get_movment_vector() -> Vector2:
 
 
 func update_animation():
-	var moveVector := get_movment_vector()
+	var moveVector := get_movement_vector()
 	if !is_on_floor():
 		$AnimatedSprite.play("jump")
 	elif moveVector.x != 0:
