@@ -7,4 +7,4 @@ func _ready() -> void:
 		baseLavels[0].connect("coin_total_changed", self, "on_coin_total_changed")
 
 func on_coin_total_changed(total_coins: int, collectedCoins: int):
-	$MarginContainer/CoinLabel.text = str(collectedCoins, '/', total_coins)
+	$MarginContainer/HBoxContainer/CoinLabel.text = str(collectedCoins, '/', total_coins)
