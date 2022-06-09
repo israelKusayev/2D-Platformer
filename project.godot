@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "BaseLevel",
+"language": "GDScript",
+"path": "res://scenes/BaseLevel.gd"
+}, {
+"base": "Node2D",
 "class": "Coin",
 "language": "GDScript",
 "path": "res://scenes/Coin.gd"
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://scenes/Player.gd"
 } ]
 _global_script_class_icons={
+"BaseLevel": "",
 "Coin": "",
 "GameCamera": "",
 "GitAPI": "",

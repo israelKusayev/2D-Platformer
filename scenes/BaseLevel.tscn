@@ -149,7 +149,7 @@ points = PoolVector2Array( 0, 0, 18, 0, 18, 18, 0, 18 )
 } ]
 0/z_index = 0
 
-[node name="BaseLevel" type="Node2D"]
+[node name="BaseLevel" type="Node2D" groups=["base_level"]]
 script = ExtResource( 6 )
 
 [node name="TileMap" type="TileMap" parent="."]
