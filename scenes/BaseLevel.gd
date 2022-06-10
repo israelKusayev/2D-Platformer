@@ -11,6 +11,7 @@ var totalCoins := 0
 var collectedCoins := 0
 
 func _ready() -> void:
+	$Flag.connect("player_won", self, "on_player_won")
 	spwanPosition = ($Player as Player).global_position
 	register_player($Player as Player)
 	
@@ -39,3 +40,6 @@ func create_player():
 func on_player_died():
 	currentPlayerNode.queue_free()
 	create_player()
+
+func on_player_won():
+	$"/root/LevelManager".increment_level()
