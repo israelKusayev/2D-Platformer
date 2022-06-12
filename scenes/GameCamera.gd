@@ -12,9 +12,9 @@ var yNoiseSampleVector := Vector2.DOWN
 var xNoiseSamplePosition := Vector2.ZERO
 var yNoiseSamplePosition := Vector2.ZERO
 var noiseSampleTravelRate := 500
-var maxShakeOffset := 6
-var currentShakePrecentage := 0
-var shakeDecay := 4
+var maxShakeOffset := 10
+var currentShakePrecentage := 0.0
+var shakeDecay := 3
 
 func _ready() -> void:
 	VisualServer.set_default_clear_color(backgroundColor)
@@ -34,12 +34,13 @@ func _process(delta: float) -> void:
 		var calculatedOffset = Vector2(xSample, ySample) * maxShakeOffset * pow(currentShakePrecentage, 2)
 		offset = calculatedOffset
 		
-		currentShakePrecentage = clamp(currentShakePrecentage - shakeDecay, 0, 1)
+		currentShakePrecentage = clamp(currentShakePrecentage - shakeDecay, 0.0, 1.0)
 		
 
 
-func apply_shake(precentage: int):
-	currentShakePrecentage = clamp(currentShakePrecentage + precentage, 0, 1)
+func apply_shake(precentage: float):
+	currentShakePrecentage = clamp(currentShakePrecentage + precentage, 0.0, 1.0)
+	
 
 func acuire_target_position():
 	var players := get_tree().get_nodes_in_group("player")
