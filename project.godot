@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://scenes/Player.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PlayerDeath",
+"language": "GDScript",
+"path": "res://KinematicBody2D.gd"
 } ]
 _global_script_class_icons={
 "BaseLevel": "",
 "Coin": "",
 "GameCamera": "",
 "GitAPI": "",
-"Player": ""
+"Player": "",
+"PlayerDeath": ""
 }
 
 [application]
