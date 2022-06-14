@@ -12,21 +12,25 @@ var currentPlayerNode: Player = null
 var totalCoins := 0
 var collectedCoins := 0
 
+
 func _ready() -> void:
 	$Flag.connect("player_won", self, "on_player_won")
 	spwanPosition = ($PlayerRoot/Player as Player).global_position
 	register_player($PlayerRoot/Player as Player)
-	
+
 	coin_total_chaanged(get_tree().get_nodes_in_group("coin").size())
+
 
 func coin_collected():
 	collectedCoins += 1
 	emit_signal("coin_total_changed", totalCoins, collectedCoins)
 
+
 func coin_total_chaanged(newTotal):
 	totalCoins = newTotal
 	emit_signal("coin_total_changed", totalCoins, collectedCoins)
-	
+
+
 func register_player(player: Player):
 	currentPlayerNode = player
 	currentPlayerNode.connect("died", self, "on_player_died", [], CONNECT_DEFERRED)
@@ -45,8 +49,8 @@ func on_player_died():
 	yield(timer, "timeout")
 	create_player()
 
+
 func on_player_won():
 	currentPlayerNode.queue_free()
 	var levelComplete = levelCompleteScene.instance()
 	add_child(levelComplete)
-

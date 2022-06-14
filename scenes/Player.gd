@@ -24,6 +24,7 @@ var currentState = State.NORMAL
 var isStateNew = true
 var defaultHazardMask := 0
 
+
 func _ready() -> void:
 	$HazardArea.connect("area_entered", self, "on_hazard_area_entered")
 	defaultHazardMask = $HazardArea.collision_mask
@@ -37,7 +38,7 @@ func _process(delta: float) -> void:
 			process_dash(delta)
 	isStateNew = false
 
-	
+
 func change_state(new_state):
 	currentState = new_state
 	isStateNew = true
@@ -79,12 +80,13 @@ func process_normal(delta: float):
 	if is_on_floor():
 		hasDoubleJump = true
 		hasDash = true
-		
+
 	if hasDash && Input.is_action_just_pressed("dash"):
 		call_deferred("change_state", State.DASHING)
 		hasDash = false
 
 	update_animation()
+
 
 func process_dash(delta: float):
 	if isStateNew:
@@ -98,13 +100,14 @@ func process_dash(delta: float):
 			velocityMod = sign(moveVector.x)
 		else:
 			velocityMod = 1 if $AnimatedSprite.flip_h else -1
-		
+
 		velocity = Vector2(maxDashSpeed * velocityMod, 0)
 	velocity = move_and_slide(velocity, Vector2.UP)
 	velocity.x = lerp(0, velocity.x, pow(2, -8 * delta))
-	
+
 	if abs(velocity.x) < minDashSpeed:
 		call_deferred("change_state", State.NORMAL)
+
 
 func get_movement_vector() -> Vector2:
 	var moveVector = Vector2.ZERO
@@ -125,12 +128,14 @@ func update_animation():
 	if moveVector.x != 0:
 		$AnimatedSprite.flip_h = true if moveVector.x > 0 else false
 
+
 func kill():
 	var playerDeathInstance: PlayerDeath = playerDeathScene.instance()
 	get_parent().add_child_below_node(self, playerDeathInstance)
 	playerDeathInstance.global_position = global_position
 	playerDeathInstance.velocity = velocity
 	emit_signal("died")
+
 
 func on_hazard_area_entered(_area2d):
 	$"/root/Helpers".apply_camera_shake(1)

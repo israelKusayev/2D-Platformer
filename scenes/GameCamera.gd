@@ -16,6 +16,7 @@ var maxShakeOffset := 10
 var currentShakePrecentage := 0.0
 var shakeDecay := 3
 
+
 func _ready() -> void:
 	VisualServer.set_default_clear_color(backgroundColor)
 
@@ -24,23 +25,26 @@ func _process(delta: float) -> void:
 	acuire_target_position()
 
 	global_position = lerp(targetPosition, global_position, pow(2, -15 * delta))
-	
+
 	if currentShakePrecentage > 0:
 		xNoiseSamplePosition += xNoiseSampleVector * noiseSampleTravelRate * delta
 		yNoiseSamplePosition += yNoiseSampleVector * noiseSampleTravelRate * delta
 		var xSample = shakeNoise.get_noise_2d(xNoiseSamplePosition.x, xNoiseSamplePosition.y)
 		var ySample = shakeNoise.get_noise_2d(yNoiseSamplePosition.x, yNoiseSamplePosition.y)
-		
-		var calculatedOffset = Vector2(xSample, ySample) * maxShakeOffset * pow(currentShakePrecentage, 2)
+
+		var calculatedOffset = (
+			Vector2(xSample, ySample)
+			* maxShakeOffset
+			* pow(currentShakePrecentage, 2)
+		)
 		offset = calculatedOffset
-		
+
 		currentShakePrecentage = clamp(currentShakePrecentage - shakeDecay, 0.0, 1.0)
-		
 
 
 func apply_shake(precentage: float):
 	currentShakePrecentage = clamp(currentShakePrecentage + precentage, 0.0, 1.0)
-	
+
 
 func acuire_target_position():
 	var players := get_tree().get_nodes_in_group("player")

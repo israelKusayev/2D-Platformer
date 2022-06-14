@@ -6,6 +6,7 @@ var direction := Vector2.ZERO
 var gravity := 500
 var startDirection := Vector2.RIGHT
 
+
 func _ready() -> void:
 	direction = startDirection
 
@@ -25,6 +26,7 @@ func _process(delta: float) -> void:
 
 func on_goal_entered(_area2d) -> void:
 	direction *= -1
+
 
 func on_hitbox_entered(_area2d) -> void:
 	$"/root/Helpers".apply_camera_shake(1)
