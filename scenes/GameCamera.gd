@@ -53,7 +53,7 @@ func acuire_target_position():
 
 
 func get_target_position_from_node_group(groupName: String) -> bool:
-	var players := get_tree().get_nodes_in_group("groupName")
+	var players := get_tree().get_nodes_in_group(groupName)
 	if players.size() > 0:
 		var player = players[0]
 		targetPosition = player.global_position
