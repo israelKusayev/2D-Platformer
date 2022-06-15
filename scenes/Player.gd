@@ -95,7 +95,7 @@ func process_dash(delta: float):
 		$AnimatedSprite.play("jump")
 		$HazardArea.collision_mask = dashHazardMask
 		var moveVector := get_movement_vector()
-		var velocityMod := 1
+		var velocityMod := 1.0
 		if moveVector.x != 0:
 			velocityMod = sign(moveVector.x)
 		else:

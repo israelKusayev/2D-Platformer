@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "PlayerDeath",
 "language": "GDScript",
-"path": "res://KinematicBody2D.gd"
+"path": "res://scenes/PlayerDeath.gd"
 } ]
 _global_script_class_icons={
 "BaseLevel": "",
