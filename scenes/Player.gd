@@ -5,6 +5,7 @@ class_name Player
 signal died
 
 var playerDeathScene := preload("res://scenes/PlayerDeath.tscn")
+var footstepParticlesScene := preload("res://scenes/FootstepParticles.tscn")
 
 enum State { NORMAL, DASHING }
 
@@ -27,6 +28,7 @@ var isDying := false
 
 func _ready() -> void:
 	$HazardArea.connect("area_entered", self, "on_hazard_area_entered")
+	$AnimatedSprite.connect("frame_changed", self, "on_aminated_sprite_frame_changed")
 	defaultHazardMask = $HazardArea.collision_mask
 
 
@@ -77,7 +79,9 @@ func process_normal(delta: float):
 
 	if wasOnFloor && !is_on_floor():
 		$CoyoteTimer.start()
-
+	if !wasOnFloor && is_on_floor() && !isStateNew:
+		spawn_footsteps(1.5)
+	
 	if is_on_floor():
 		hasDoubleJump = true
 		hasDash = true
@@ -142,7 +146,17 @@ func kill():
 	playerDeathInstance.global_position = global_position
 	emit_signal("died")
 
+func spawn_footsteps(scale = 1):
+	var footstepParticlesInstance: Node2D = footstepParticlesScene.instance()
+	get_parent().add_child(footstepParticlesInstance)
+	footstepParticlesInstance.scale = Vector2.ONE * scale
+	footstepParticlesInstance.global_position = global_position
 
 func on_hazard_area_entered(_area2d):
 	$"/root/Helpers".apply_camera_shake(1)
 	call_deferred("kill")
+
+func on_aminated_sprite_frame_changed():
+	if $AnimatedSprite.animation == "run" && $AnimatedSprite.frame == 0:
+		spawn_footsteps()
+
