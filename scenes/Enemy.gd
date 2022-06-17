@@ -2,13 +2,13 @@ extends KinematicBody2D
 
 var enemyDeathScene = preload("res://scenes/EnemyDeath.tscn")
 
-
 export var isSpawning := true
 var maxSpeed := 25
 var velocity := Vector2.ZERO
 var direction := Vector2.ZERO
 var gravity := 500
 var startDirection := Vector2.RIGHT
+
 
 func _ready() -> void:
 	direction = startDirection
@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 	$Visuals/AnimatedSprite.flip_h = true if direction.x > 0 else false
+
 
 func kill():
 	var deathInstance: Node2D = enemyDeathScene.instance()

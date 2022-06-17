@@ -8,9 +8,10 @@ var gravity := 1000
 
 func _ready() -> void:
 	if velocity.x > 0:
-		$Visuals.scale = Vector2(-1 ,1)
+		$Visuals.scale = Vector2(-1, 1)
 
-func _process(delta:  float) -> void:
+
+func _process(delta: float) -> void:
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 

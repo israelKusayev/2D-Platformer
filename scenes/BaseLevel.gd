@@ -6,7 +6,7 @@ signal coin_total_changed
 
 export(PackedScene) var levelCompleteScene
 
-var playerScene = preload("res://scenes/Player.tscn")
+var playerScene := preload("res://scenes/Player.tscn")
 var spwanPosition := Vector2.ZERO
 var currentPlayerNode: Player = null
 var totalCoins := 0
@@ -26,7 +26,7 @@ func coin_collected():
 	emit_signal("coin_total_changed", totalCoins, collectedCoins)
 
 
-func coin_total_chaanged(newTotal):
+func coin_total_chaanged(newTotal: int):
 	totalCoins = newTotal
 	emit_signal("coin_total_changed", totalCoins, collectedCoins)
 
