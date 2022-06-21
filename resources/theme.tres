@@ -32,11 +32,12 @@ margin_bottom = 5.0
 modulate_color = Color( 0.462745, 0.462745, 0.462745, 1 )
 
 [sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0, 0, 0, 0.788235 )
+bg_color = Color( 0.72549, 0.321569, 0.243137, 0.635294 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+shadow_size = 1
 anti_aliasing = false
 
 [resource]
