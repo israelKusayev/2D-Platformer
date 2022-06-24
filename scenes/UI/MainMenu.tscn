@@ -1,43 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resources/theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/UI/AnimatedButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/UI/MainMenu.gd" type="Script" id=3]
-[ext_resource path="res://resources/tileset.tres" type="TileSet" id=4]
-[ext_resource path="res://scenes/Clouds.tscn" type="PackedScene" id=5]
-[ext_resource path="res://resources/decorative_tileset.tres" type="TileSet" id=6]
-[ext_resource path="res://scenes/GameCamera.tscn" type="PackedScene" id=8]
-
-[sub_resource type="OpenSimplexNoise" id=1]
-seed = 7124
+[ext_resource path="res://scenes/UI/MenuBackground.tscn" type="PackedScene" id=4]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource( 3 )
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="GameCamera" parent="Node2D" instance=ExtResource( 8 )]
-backgroundColor = Color( 0.87451, 0.964706, 0.960784, 1 )
-shakeNoise = SubResource( 1 )
-
-[node name="Clouds" parent="Node2D/GameCamera" instance=ExtResource( 5 )]
-
-[node name="TileMap" type="TileMap" parent="Node2D"]
-tile_set = ExtResource( 4 )
-cell_size = Vector2( 18, 18 )
-format = 1
-tile_data = PoolIntArray( -65535, 1, 0, -65534, 1, 1, -65533, 1, 1, -65532, 1, 2, 1, 1, 65536, 2, 1, 65537, 3, 1, 65537, 4, 1, 65538, 65537, 1, 131072, 65538, 1, 131073, 65539, 1, 131073, 65540, 1, 131074, 196623, 1, 0, 196624, 1, 2, 262159, 1, 65536, 262160, 1, 65538, 327695, 1, 65536, 327696, 1, 65538, 393231, 1, 65536, 393232, 1, 65538, 458767, 1, 65536, 458768, 1, 65538, 524288, 1, 0, 524289, 1, 1, 524290, 1, 1, 524291, 1, 1, 524292, 1, 1, 524293, 1, 1, 524294, 1, 1, 524295, 1, 2, 524298, 1, 0, 524299, 1, 1, 524300, 1, 1, 524301, 1, 1, 524302, 1, 1, 524303, 1, 65540, 524304, 1, 65538, 589824, 1, 131072, 589825, 1, 131073, 589826, 1, 4, 589827, 1, 65537, 589828, 1, 65537, 589829, 1, 65537, 589830, 1, 65537, 589831, 1, 65539, 589832, 1, 1, 589833, 1, 1, 589834, 1, 65540, 589835, 1, 65537, 589836, 1, 65537, 589837, 1, 65537, 589838, 1, 65537, 589839, 1, 65537, 589840, 1, 65538, 655362, 1, 131072, 655363, 1, 131073, 655364, 1, 131073, 655365, 1, 131073, 655366, 1, 4, 655367, 1, 65537, 655368, 1, 65537, 655369, 1, 65537, 655370, 1, 65537, 655371, 1, 65537, 655372, 1, 65537, 655373, 1, 65537, 655374, 1, 65537, 655375, 1, 65537, 655376, 1, 65538, 720902, 1, 65536, 720903, 1, 65537, 720904, 1, 65537, 720905, 1, 65537, 720906, 1, 65537, 720907, 1, 65537, 720908, 1, 65537, 720909, 1, 65537, 720910, 1, 65537, 720911, 1, 65537, 720912, 1, 65538, 786438, 1, 65536, 786439, 1, 65537, 786440, 1, 65537, 786441, 1, 65537, 786442, 1, 65537, 786443, 1, 65537, 786444, 1, 65537, 786445, 1, 65537, 786446, 1, 65537, 786447, 1, 65537, 786448, 1, 65538, 851974, 1, 131072, 851975, 1, 131073, 851976, 1, 131073, 851977, 1, 131073, 851978, 1, 131073, 851979, 1, 131073, 851980, 1, 131073, 851981, 1, 131073, 851982, 1, 131073, 851983, 1, 131073, 851984, 1, 131074 )
-
-[node name="DecorativeTileMap" type="TileMap" parent="Node2D"]
-tile_set = ExtResource( 6 )
-cell_size = Vector2( 18, 18 )
-format = 1
-tile_data = PoolIntArray( -131070, 2, 0, 131088, 2, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 393217, 1, 65536, 458753, 1, 196608, 458765, 2, 0, 458766, 2, 0 )
-
-[node name="ForegroundTimeMap" type="TileMap" parent="Node2D"]
-tile_set = ExtResource( 4 )
-cell_size = Vector2( 18, 18 )
-format = 1
+[node name="MenuBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0

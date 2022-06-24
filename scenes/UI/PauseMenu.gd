@@ -27,5 +27,5 @@ func on_options_pressed():
 	pass
 
 func on_quit_pressed():
-	$"/root/ScreenTransitionManager".transition_to_scene("res://scenes/UI/MainMenu.tscn")
+	$"/root/ScreenTransitionManager".transition_to_main_menu()
 	unpause()
