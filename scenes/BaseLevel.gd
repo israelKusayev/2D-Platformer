@@ -22,10 +22,12 @@ func _ready() -> void:
 
 	coin_total_chaanged(get_tree().get_nodes_in_group("coin").size())
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("pause"):
 		var pauseInstance := pauseScene.instance()
 		add_child(pauseInstance)
+
 
 func coin_collected():
 	collectedCoins += 1
