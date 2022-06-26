@@ -40,7 +40,6 @@ margin_left = 96.0
 margin_top = 40.0
 margin_right = 224.0
 margin_bottom = 140.0
-rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 64, 50 )
 size_flags_horizontal = 4
 size_flags_vertical = 4

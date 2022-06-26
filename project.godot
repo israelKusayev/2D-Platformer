@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
+"base": "CanvasLayer",
+"class": "OptionsMenu",
+"language": "GDScript",
+"path": "res://scenes/UI/OptionsMenu.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "Coin": "",
 "GameCamera": "",
 "GitAPI": "",
+"OptionsMenu": "",
 "Player": "",
 "PlayerDeath": ""
 }
