@@ -163,7 +163,7 @@ func spawn_footsteps(scale = 1):
 	get_parent().add_child(footstepParticlesInstance)
 	footstepParticlesInstance.scale = Vector2.ONE * scale
 	footstepParticlesInstance.global_position = global_position
-
+	$FootstepAudioPlayer.play()
 
 func on_hazard_area_entered(_area2d):
 	$"/root/Helpers".apply_camera_shake(1)
