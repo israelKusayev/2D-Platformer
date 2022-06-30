@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=4 format=2]
+[gd_resource type="AudioBusLayout" load_steps=6 format=2]
 
 [sub_resource type="AudioEffectHighPassFilter" id=1]
 resource_name = "HighPassFilter"
@@ -13,6 +13,15 @@ resource_name = "Chorus"
 dry = 0.4
 wet = 1.0
 voice/1/delay_ms = 50.0
+
+[sub_resource type="AudioEffectPitchShift" id=4]
+resource_name = "PitchShift"
+pitch_scale = 1.2
+
+[sub_resource type="AudioEffectPhaser" id=5]
+resource_name = "Phaser"
+rate_hz = 20.0
+feedback = 0.6
 
 [resource]
 bus/1/name = "SFX"
@@ -45,3 +54,13 @@ bus/4/mute = false
 bus/4/bypass_fx = false
 bus/4/volume_db = 0.0
 bus/4/send = "Master"
+bus/5/name = "PlayerDash"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = "SFX"
+bus/5/effect/0/effect = SubResource( 4 )
+bus/5/effect/0/enabled = true
+bus/5/effect/1/effect = SubResource( 5 )
+bus/5/effect/1/enabled = true

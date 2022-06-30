@@ -98,6 +98,7 @@ func process_normal(delta: float):
 
 func process_dash(delta: float):
 	if isStateNew:
+		$DashAudioPlayer.play()
 		$DashParticles.emitting = true
 		$"/root/Helpers".apply_camera_shake(.75)
 		$DashArea/CollisionShape2D.disabled = false
