@@ -1,5 +1,6 @@
 extends Button
 
+export(bool) var disableHoverAnim
 
 func _ready() -> void:
 	connect("mouse_entered", self, "on_mouse_entered")
@@ -12,12 +13,14 @@ func _process(delta: float) -> void:
 
 
 func on_mouse_entered():
-	$HoverAnimationPlayer.play("hover")
+	if !disableHoverAnim:
+		$HoverAnimationPlayer.play("hover")
 
 
 func on_mouse_exited():
-	$HoverAnimationPlayer.queue("hover")
-	$HoverAnimationPlayer.play_backwards("hover")
+	if !disableHoverAnim:
+		$HoverAnimationPlayer.queue("hover")
+		$HoverAnimationPlayer.play_backwards("hover")
 
 
 func on_pressed():
