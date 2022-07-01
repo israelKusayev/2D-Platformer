@@ -20,7 +20,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 64
 atlas = ExtResource( 2 )
 region = Rect2( 0, 576, 9, 13 )
 
@@ -37,6 +36,7 @@ void fragment() {
 shader = SubResource( 3 )
 
 [node name="MouseCursor" type="CanvasLayer"]
+pause_mode = 2
 layer = 100
 script = ExtResource( 1 )
 
